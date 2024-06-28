@@ -15,6 +15,7 @@ builder.Services.AddDbContext<InventoryDbContext>(options =>
 builder.Services.AddControllersWithViews();
 
 builder.Services.AddScoped<IProduct, ProductService>();
+builder.Services.AddScoped<ITransaction, TransactionService>();
 
 var app = builder.Build();
 

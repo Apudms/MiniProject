@@ -77,7 +77,7 @@ namespace SimpleInventory.Services
                 }
                 else
                 {
-                    throw new ArgumentException($"Failed to update product with ID {entity.ProductId}");
+                    throw new ArgumentException($"Failed to update product with ID: {entity.ProductId}");
                 }
                 return updProd;
             }
