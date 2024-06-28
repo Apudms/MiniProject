@@ -1,6 +1,6 @@
 ![](https://www.pngmart.com/files/23/Green-Line-PNG-File.png)
 
-<h3 align="center">Vehicle-Rental-Management-System</h3>
+<h3 align="center">Simple Inventory Management</h3>
 
 ![](https://www.pngmart.com/files/23/Green-Line-PNG-File.png)
 <br/>
