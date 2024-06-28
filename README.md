@@ -9,5 +9,5 @@
 
 Clone the repo and install dependencies:
 ```bash
-git clone https://github.com/Apudms/Vehicle-Rental-Management-System.git
+git clone https://github.com/Apudms/MiniProject.git
 # Edit your appsettings.json file and all the credentials
