@@ -63,6 +63,11 @@ namespace SimpleInventory.Services
             return result;
         }
 
+        public int GetTotalProductCount()
+        {
+            return _context.Products.Count();
+        }
+
         public Product Update(Product entity)
         {
             try

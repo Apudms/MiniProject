@@ -63,6 +63,11 @@ namespace SimpleInventory.Services
             return result;
         }
 
+        public int GetTotalTransactionCount()
+        {
+            return _context.Transactions.Count();
+        }
+
         public Transaction Update(Transaction entity)
         {
             try

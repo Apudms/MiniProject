@@ -1,4 +1,4 @@
-﻿@model SimpleInventory.Models.HomeViewModel
+﻿@model IEnumerable<SimpleInventory.Models.Transaction>
 
 @{
     Layout = null;
@@ -11,7 +11,7 @@
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-    <title>Dashboard - Simple Inventory Management</title>
+    <title>Transactions - Simple Inventory Management</title>
     <meta content="" name="description">
     <meta content="" name="keywords">
 
@@ -89,7 +89,7 @@
         <ul class="sidebar-nav" id="sidebar-nav">
 
             <li class="nav-item">
-                <a class="nav-link " href="/">
+                <a class="nav-link collapsed" href="/">
                     <i class="bi bi-grid"></i>
                     <span>Dashboard</span>
                 </a>
@@ -105,7 +105,7 @@
             </li><!-- End Profile Page Nav -->
 
             <li class="nav-item">
-                <a class="nav-link collapsed" href="Transactions">
+                <a class="nav-link " href="Transactions">
                     <i class="bi bi-cart3"></i>
                     <span>Transactions</span>
                 </a>
@@ -118,71 +118,61 @@
     <main id="main" class="main">
 
         <div class="pagetitle">
-            <h1>Dashboard</h1>
+            <h1>Transactions</h1>
             <nav>
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="/">Home</a></li>
-                    <li class="breadcrumb-item active">Dashboard</li>
+                    <li class="breadcrumb-item active">Transactions</li>
                 </ol>
             </nav>
         </div><!-- End Page Title -->
 
-        <section class="section dashboard">
+        <section class="section">
             <div class="row">
-
-                <!-- Left side columns -->
                 <div class="col-lg-12">
-                    <div class="row">
 
-                        <!-- Sales Card -->
-                        <div class="col-xxl-4 col-md-6">
-                            <div class="card info-card sales-card">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Transaction Data</h5>
+                            <a href="/Transactions/Create" class="btn btn-success mb-4">Create New Transaction</a>
 
-                                <div class="card-body">
-                                    <h5 class="card-title">Products <span>| All</span></h5>
+                            <!-- Table with stripped rows -->
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">ID</th>
+                                        <th scope="col">Product ID</th>
+                                        <th scope="col">Transaction Type</th>
+                                        <th scope="col">Quantity</th>
+                                        <th scope="col">Date</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var transaction in Model)
+                                    {
+                                        <tr>
+                                            <th scope="row">@transaction.TransactionId</th>
+                                            <td>@transaction.ProductId</td>
+                                            @if (Convert.ToInt32(transaction.TransactionType) == 1)
+                                            {
+                                                <td>Increase stock</td>
+                                            } 
+                                            else
+                                            {
+                                                <td>Decrease stock</td>
+                                            }
+                                            <td>@transaction.Quantity</td>
+                                            <td>@transaction.Date</td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                            <!-- End Table with stripped rows -->
 
-                                    <div class="d-flex align-items-center">
-                                        <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                                            <i class="bi bi-tags-fill"></i>
-                                        </div>
-                                        <div class="ps-3">
-                                            <h6>@Model.ProductCount</h6>
-
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div><!-- End Sales Card -->
-                        <!-- Customers Card -->
-                        <div class="col-xxl-4 col-md-6">
-
-                            <div class="card info-card customers-card">
-
-                                <div class="card-body">
-                                    <h5 class="card-title">Transactions <span>| All</span></h5>
-
-                                    <div class="d-flex align-items-center">
-                                        <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                                            <i class="bi bi-cart3"></i>
-                                        </div>
-                                        <div class="ps-3">
-                                            <h6>@Model.TransactionCount</h6>
-
-                                        </div>
-                                    </div>
-
-                                </div>
-                            </div>
-
-                        </div><!-- End Customers Card -->
-                        <!-- Revenue Card -->
+                        </div>
                     </div>
-                </div><!-- End Left side columns -->
-                <!-- Right side columns -->
-                <div class="col-lg-4">
-                </div><!-- End Right side columns -->
 
+                </div>
             </div>
         </section>
 

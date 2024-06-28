@@ -1,9 +1,6 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Mvc;
 using SimpleInventory.Contracts;
 using SimpleInventory.Models;
-using SimpleInventory.Services;
 
 namespace SimpleInventory.Controllers
 {
@@ -51,7 +48,7 @@ namespace SimpleInventory.Controllers
             try
             {
                 var result = _product.Add(product);
-                TempData["Message"] = $"Product {product.ProductId} added successfully";
+                TempData["Message"] = $"Product with ID: {product.ProductId} added successfully";
                 return RedirectToAction(nameof(Index));
             }
             catch
