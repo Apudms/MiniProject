@@ -1,0 +1,70 @@
+services:
+  db:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: demodb
+    environment:
+      MSSQL_SA_PASSWORD: "Pwd@321"
+      ACCEPT_EULA: "Y"
+      MSSSQL_PID: "Developer"
+    ports:
+      - "1455:1433"
+    volumes:
+      - mssql-data:/var/opt/mssql
+    networks:
+      - trainingnet
+
+  # webapiapp:
+  #   build: 
+  #     context: ../WebAppDemo
+  #     dockerfile: WebAppDemo/Dockerfile
+  #   ports:
+  #     - "8080:8080"
+  #   networks:
+  #     - trainingnet
+
+  # simpleetl:
+  #   build: 
+  #     context: ../SimpleETL
+  #     dockerfile: SimpleETL/Dockerfile
+  #   volumes:
+  #     - ./csvdata:/csvdata
+  #   networks:
+  #     - trainingnet
+
+  # etlworker:
+  #   build: 
+  #     context: ../Dotnet-Core-with-Docker
+  #     dockerfile: ETLWorkerService/Dockerfile
+  #   volumes:
+  #     - ./csvdata:/csvdata
+  #   networks:
+  #     - trainingnet
+
+  simpleinventory:
+    build: 
+      context: ../MiniProject
+      dockerfile: SimpleInventory/Dockerfile
+    ports:
+      - "8080:8080"
+    networks:
+      - trainingnet
+
+  # workeretl:
+  #   build:
+  #     context: ../Dotnet-Core-with-Docker
+  #     dockerfile: WorkerServiceDemo/Dockerfile
+  #   volumes:
+  #     - ./csvdata:/csvdata
+  #   networks:
+  #     - trainingnet
+
+  dbtool:
+    image: mcr.microsoft.com/mssql-tools
+    networks:
+      - trainingnet
+
+volumes:
+  mssql-data:
+
+networks:
+  trainingnet:
