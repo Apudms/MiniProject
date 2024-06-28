@@ -11,7 +11,7 @@ services:
     volumes:
       - mssql-data:/var/opt/mssql
     networks:
-      - trainingnet
+      - miniproject
 
   # webapiapp:
   #   build: 
@@ -47,7 +47,7 @@ services:
     ports:
       - "8080:8080"
     networks:
-      - trainingnet
+      - miniproject
 
   # workeretl:
   #   build:
@@ -61,10 +61,10 @@ services:
   dbtool:
     image: mcr.microsoft.com/mssql-tools
     networks:
-      - trainingnet
+      - miniproject
 
 volumes:
   mssql-data:
 
 networks:
-  trainingnet:
+  miniproject:

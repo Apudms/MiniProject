@@ -1,7 +1,20 @@
+using Microsoft.EntityFrameworkCore;
+using SimpleInventory.Contracts;
+using SimpleInventory.Models;
+using SimpleInventory.Services;
+
 var builder = WebApplication.CreateBuilder(args);
+
+// register dbcontext ef
+builder.Services.AddDbContext<InventoryDbContext>(options =>
+{
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
+});
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddScoped<IProduct, ProductService>();
 
 var app = builder.Build();
 
