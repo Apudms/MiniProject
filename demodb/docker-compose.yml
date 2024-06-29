@@ -13,33 +13,6 @@ services:
     networks:
       - miniproject
 
-  # webapiapp:
-  #   build: 
-  #     context: ../WebAppDemo
-  #     dockerfile: WebAppDemo/Dockerfile
-  #   ports:
-  #     - "8080:8080"
-  #   networks:
-  #     - trainingnet
-
-  # simpleetl:
-  #   build: 
-  #     context: ../SimpleETL
-  #     dockerfile: SimpleETL/Dockerfile
-  #   volumes:
-  #     - ./csvdata:/csvdata
-  #   networks:
-  #     - trainingnet
-
-  # etlworker:
-  #   build: 
-  #     context: ../Dotnet-Core-with-Docker
-  #     dockerfile: ETLWorkerService/Dockerfile
-  #   volumes:
-  #     - ./csvdata:/csvdata
-  #   networks:
-  #     - trainingnet
-
   simpleinventory:
     build: 
       context: ../MiniProject
@@ -48,15 +21,6 @@ services:
       - "8080:8080"
     networks:
       - miniproject
-
-  # workeretl:
-  #   build:
-  #     context: ../Dotnet-Core-with-Docker
-  #     dockerfile: WorkerServiceDemo/Dockerfile
-  #   volumes:
-  #     - ./csvdata:/csvdata
-  #   networks:
-  #     - trainingnet
 
   dbtool:
     image: mcr.microsoft.com/mssql-tools
